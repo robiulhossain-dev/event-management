@@ -1,0 +1,148 @@
+{% load static %}
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static "css/output.css" %}">
+    <title>Event</title>
+  </head>
+  <body class="">  
+    {% comment %} napvar {% endcomment %}
+    <div class="bg-white shadow-sm">
+      <div id="navbar" class="flex justify-between items-center fixed w-full top-0 left-0 bg-white transform transition-transform duration-[1s,15s] ease-in-out shadow-md">
+
+        {% comment %} icon & bussiness-name {% endcomment %}
+        <div class="flex justify-between items-center pl-16">
+          <div>
+            <img src="{% static "img/icons/icon1.png" %}" class="size-12" alt="">
+          </div>
+          <div class="p-2">
+            <h1 class="text-4xl font-bold font-serif">ANADOLU</h1>
+            <h3 class="text-orange-600 font-bold">EVENT MANAGEMENT</h3>
+          </div>
+        </div>
+
+        {% comment %} options {% endcomment %}
+        <div>
+          <div class="flex justify-center pr-5 font-mono">
+            <h1 class="font-semibold text-xl p-5 hover:text-orange-500">Home</h1>
+            <h1 class="font-semibold text-xl p-5 hover:text-orange-500">About</h1>
+            <h1 class="font-semibold text-xl p-5 hover:text-orange-500">Event</h1>
+            <h1 class="font-semibold text-xl p-5 hover:text-orange-500">Dashboard</h1>
+            <h1 class="font-semibold text-xl p-5 hover:text-orange-500">Contact</h1>         
+          </div>
+        </div>
+      </div>
+
+      <script>
+        let lastScroll = 0;
+        const navbar = document.getElementById("navbar");
+
+        window.addEventListener("scroll", () => {
+          let currentScroll = window.scrollY;
+
+          if (currentScroll > lastScroll) {
+            // scroll down → hide
+            navbar.style.transform = "translateY(-100%)";
+          } else {
+            // scroll up → show
+            navbar.style.transform = "translateY(0)";
+          }
+
+          lastScroll = currentScroll;
+        });
+      </script>
+    </div>
+
+
+    {% comment %} home-page-image {% endcomment %}
+    <div class="">
+      <div id="hero" class="bg-red-700 bg-scroll bg-cover overflow-auto p-52 bg-blend-multiply"
+          style="background-image: url('{% static "img/event/event6.jpg" %}');">
+          <span class="text-6xl font-extrabold text-amber-400 font-mono">Anadolu</span>
+          <h1 class="text-white text-2xl">Event Management</h1>
+      </div>
+
+      <script>
+        window.addEventListener("scroll", () => {
+          const scrolled = window.scrollY;
+          document.getElementById("hero").style.backgroundPositionY = scrolled * 0.3 + "px";
+        });
+      </script>
+    </div>
+      
+    {% block events-home-page %}
+    
+    {% endblock events-home-page %}
+
+
+    {% comment %} footer-section {% endcomment %}
+    <div class="mt-10 bg-zinc-800 w-full p-10">
+      <div class="py-20">
+        <div class="grid grid-cols-3 p-5 gap-8">
+          <div class="grid grid-cols-4 h-12 w-full">
+            <div class="col-start-1 col-span-1 bg-zinc-700 p-6">
+              <img src="{% static "img/icons/icon14.png" %}" class="h-12 w-12" alt="">
+            </div>
+            <div class="col-start-2 col-span-3 bg-zinc-900 p-5">
+              <div class="">
+                <h1 class="font-semibold text-white">Sultan Mehmed Square,</h1>
+                <h1 class="font-extrabold text-amber-600 text-xl font-serif">Istanbul, Turkiye</h1>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-4 h-12 w-full">
+            <div class="col-start-1 col-span-1 bg-zinc-700 p-6">
+              <img src="{% static "img/icons/icon23.png" %}" class="h-12 w-8" alt="">
+            </div>
+            <div class="col-start-2 col-span-3 bg-zinc-900 p-5">
+              <div class="">
+                <h1 class="font-semibold text-white">Contact-Email</h1>
+                <h1 class="font-extrabold text-amber-600 text-xl font-serif">anadolu@gmail.com</h1>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-4 h-12 w-full">
+            <div class="col-start-1 col-span-1 bg-zinc-700 p-6">
+              <img src="{% static "img/icons/icon14.png" %}" class="h-12 w-12" alt="">
+            </div>
+            <div class="col-start-2 col-span-3 bg-zinc-900 p-5">
+              <div class="">
+                <h1 class="font-semibold text-white">Call Center</h1>
+                <h1 class="font-extrabold text-amber-600 text-xl font-serif">9804 8764 4498</h1>
+              </div>
+            </div>
+          </div>
+
+          
+        </div>
+      </div>
+
+
+      <div class="grid grid-cols-4 gap-4">
+          <div class="grid col-start-2 col-span-1">
+            <h1 class="text-3xl text-white font-extrabold font-mono mb-2">Our Events</h1>
+            <h1 class="mb-2 text-gray-400 hover:text-amber-500">Sports</h1>
+            <h1 class="mb-2 text-gray-400 hover:text-amber-500">Business</h1>
+            <h1 class="mb-2 text-gray-400 hover:text-amber-500">Music</h1>
+            <h1 class="mb-2 text-gray-400 hover:text-amber-500">Cultural</h1>
+            <h1 class="mb-2 text-gray-400 hover:text-amber-500">Festival</h1>
+          </div>
+
+          <div class="grid col-start-3 col-span-1">
+            <h1 class="text-3xl text-white font-extrabold font-mono mb-2">Contact Us</h1>
+            <h1 class="mb-2 text-gray-400 hover:text-amber-500">Facebook</h1>
+            <h1 class="mb-2 text-gray-400 hover:text-amber-500">Instagram</h1>
+            <h1 class="mb-2 text-gray-400 hover:text-amber-500">Youtube</h1>
+            <h1 class="mb-2 text-gray-400 hover:text-amber-500">Telegram</h1>
+            <h1 class="mb-2 text-gray-400 hover:text-amber-500">X</h1>
+          </div>
+      </div>
+    </div>
+
+  </body>
+</html>

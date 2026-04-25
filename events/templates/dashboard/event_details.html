@@ -1,0 +1,56 @@
+{% extends "dashboard/frontpage.html" %}
+{% load static %}
+{% block events-home-page %}
+
+<div class="mt-10 bg-white">
+    <div class="grid grid-cols-3 gap-4 px-12">
+        <div class="grid col-start-1 col-span-2">
+            <img src="{% static "img/music/music2.jpg" %}" class="border rounded-md" alt="">
+
+            <div class="grid grid-cols-3 gap-5 mt-10 mb-16">
+                <div class="bg-gray-200 shadow-lg col-start-1 col-span-1 rounded-md h-16 w-60 p-2">
+                    <div class="flex items-center gap-4">
+                     <img class="size-12" src="{% static "img/icons/icon7.png" %}" alt="">
+                     <div class="">
+                      <h1 class="text-gray-400 text-sm font-bold">Event Date</h1>
+                      <h1 class="font-bold text-lg">26 April 2026</h1>
+                     </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-200 shadow-lg col-start-2 col-span-1 rounded-md h-16 w-60 p-2">
+                    <div class="flex items-center gap-4">
+                     <img class="size-12" src="{% static "img/icons/icon6.png" %}" alt="">
+                     <div>
+                      <h1 class="text-gray-400 text-sm font-bold">Event Time</h1>
+                      <h1 class="font-bold text-lg">9:30AM ~ 2:00PM</h1>
+                     </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-200 shadow-lg col-start-3 col-span-1 rounded-md h-16 w-60 p-2">
+                    <div class="flex items-center gap-4">
+                     <img class="size-12" src="{% static "img/icons/icon11.png" %}" alt="">
+                     <div>
+                      <h1 class="text-gray-400 text-sm font-bold">Event Location</h1>
+                      <h1 class="font-bold text-lg">Vanilla Hotel</h1>
+                     </div>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <h1>Lorem ipsum dollor site amet the best consectuer diam adipiscing elites sed diam nonummy nibh the euismod tincidunt ut laoreet dolore magna aliquam erat volutpat insignia the consectuer adipiscing elit. Lorem ipsum dollor site amet the best consectuer diam adipiscing elites sed diam nonummy nibh the euismod tincidunt ut laoreet dolore magna aliquam erat volutpat insignia the consectuer adipiscing elit. Lorem ipsum dollor site amet the best consectuer diam adipiscing elites sed diam nonummy nibh the euismod tincidunt ut laoreet dolore magna aliquam erat volutpat insignia the consectuer adipiscing elit.
+
+                    Lorem ipsum dollor site amet the best consectuer diam adipiscing elites sed diam nonummy nibh the euismod tincidunt ut laoreet dolore magna aliquam erat volutpat insignia the consectuer adipiscing elit.
+                </h1>
+            </div>
+        </div>
+
+        <div class="grid col-start-3 col-span-1 ">
+            {% comment %} <img src="{% static "img/eid/eid3.jpg" %}" class="w-full h-32 object-contain" alt=""> {% endcomment %}
+        </div>
+    </div>
+</div>
+
+{% endblock events-home-page %}

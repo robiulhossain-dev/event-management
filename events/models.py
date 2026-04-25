@@ -8,7 +8,7 @@ class Event(models.Model):
     e_time = models.TimeField()
     e_location = models.CharField(max_length=100)
     e_catagory = models.ForeignKey(
-        "Catagory", 
+        "Catagory",
         on_delete=models.CASCADE)
 
 
