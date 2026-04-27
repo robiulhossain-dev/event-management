@@ -1,0 +1,31 @@
+{% load static %}
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static "css/output.css" %}">
+    <title>Create-Event</title>
+  </head>
+  <body class="w-1/2 mx-auto mt-8">  
+    <div>
+        {% if messages %}
+          {% for message in messages %}
+            <div class=" {% if message.tags == 'success' %}{% endif %}">
+              {{message}}</div>
+          {% endfor %}
+        {% endif %}
+    </div>
+
+    <form method="POST" class="space-y-4">      
+        {% csrf_token %}
+        {% comment %} <input type="date"> {% endcomment %}
+        {% comment %} <textarea class="border border-teal-500 w- resize-none rounded-md placeholder:italic placeholder:text-gray-400" placeholder="enter event name"></textarea> {% endcomment %}
+        {% comment %} <input type="text" class="border border-teal-500 w-80 h-48 rounded-md placeholder:italic placeholder:text-gray-400 placeholder:start-0" placeholder="enter event name"> {% endcomment %}
+        
+        {{form.as_p}}
+        <button type="submit" class="bg-rose-700 rounded-md px-3 py-1">Submit</button>
+    </form>
+  </body>
+</html>
