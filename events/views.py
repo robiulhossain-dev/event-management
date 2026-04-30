@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
+from datetime import date
 from django.http import HttpResponse
 from events.forms import EventModelForm
 from events.models import Event
 from django.contrib import messages
-# Create your views here.
+from django.db.models import Avg, Count, Sum, Q
+from django.shortcuts import render, redirect
+
 
 def test_event(request):
     return render(request, "dashboard/dashboard.html")
@@ -12,13 +14,49 @@ def home(request):
     return render(request, "dashboard/homepage.html")
 
 def eventlist(request):
-    return render(request, "dashboard/eventlist.html")
+    events = Event.objects.filter(date__gt=date.today()).order_by('date')[:5]
+    context = {
+        'events' : events
+    }
+    return render(request, "dashboard/eventlist.html", context)
     
 def event_details(request):
-    return render(request, "dashboard/event_details.html")
+    ev_id = request.GET.get('id')
+    event = Event.objects.get(id=ev_id)
+    context = {
+        'event' : event
+    }
+    return render(request, "dashboard/event_details.html", context)
+
+
 
 def user_dashboard(request):
-    return render(request, "dashboard/user_dashboard.html")
+
+    date_filter = request.GET.get('date')
+
+    if date_filter == 'today':
+        events = Event.objects.filter(date = date.today())
+    elif date_filter == 'future':
+        events = Event.objects.filter(date__gt = date.today())
+    elif date_filter == 'past':
+        events = Event.objects.filter(date__lt = date.today())
+    else:
+        events = Event.objects.all()
+
+    
+    counts = Event.objects.aggregate(
+        total_events = Count('id'),
+        today_events = Count('id', filter = Q(date=date.today())),
+        future_events = Count('id', filter = Q(date__gt=date.today())),
+        past_events = Count('id', filter = Q(date__lt=date.today())),
+    )
+
+    context = {
+        'events' : events,
+        'counts' : counts
+    }
+
+    return render(request, "dashboard/user_dashboard.html", context)
 
 
 #Froms
@@ -49,3 +87,4 @@ def create_event(request):
         "form" : form
     }
     return render(request, "dashboard/create_event.html", context)
+

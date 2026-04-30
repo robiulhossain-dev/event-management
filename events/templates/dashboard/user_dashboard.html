@@ -4,50 +4,68 @@
 
 <div class="bg-gray-100">
     <div class="grid grid-cols-4 gap-4 px-8 py-20">
-        <div class="bg-white h-32 w-full rounded-xl flex justify-around items-center shadow-lg">
-            <div>
-                <h1 class="text-xl text-gray-500 shadow-md">Total Events</h1>
-                <h1 class="text-2xl font-sans">25</h1>
+        <a href="{% url "user-dashboard" %}">
+            <div class="bg-white h-32 w-full rounded-xl flex justify-around items-center shadow-lg">
+                <div>
+                    <h1 class="text-xl text-gray-500 shadow-md">Total Events</h1>
+                    <h1 class="text-2xl font-sans">{{counts.total_events}}</h1>
+                </div>
+                <div>
+                    <img src="{% static "img/icons/icon29.png" %}" class="h-12 w-12" alt="">
+                </div>
             </div>
-            <div>
-                <img src="{% static "img/icons/icon29.png" %}" class="h-12 w-12" alt="">
-            </div>
-        </div>
+        </a>
 
         
-        <div class="bg-white h-32 w-full rounded-xl flex justify-around items-center shadow-lg">
+        <a href="{% url "user-dashboard" %}?date=today">
+            <div class="bg-white h-32 w-full rounded-xl flex justify-around items-center shadow-lg">
             <div>
                 <h1 class="text-xl text-gray-500 shadow-md">Today's Events</h1>
-                <h1 class="text-2xl font-sans">10</h1>
+                <h1 class="text-2xl font-sans">{{counts.today_events}}</h1>
             </div>
             <div>
                 <img src="{% static "img/icons/icon24.png" %}" class="h-12 w-12" alt="">
             </div>
         </div>
+        </a>
 
         
-        <div class="bg-white h-32 w-full rounded-xl flex justify-around items-center shadow-lg">
-            <div>
-                <h1 class="text-xl text-gray-500 shadow-md">Future Events</h1>
-                <h1 class="text-2xl font-sans">10</h1>
+        <a href="{% url "user-dashboard" %}?date=future">
+            <div class="bg-white h-32 w-full rounded-xl flex justify-around items-center shadow-lg">
+                <div>
+                    <h1 class="text-xl text-gray-500 shadow-md">Future Events</h1>
+                    <h1 class="text-2xl font-sans">{{counts.future_events}}</h1>
+                </div>
+                <div>
+                    <img src="{% static "img/icons/icon30.png" %}" class="h-12 w-12" alt="">
+                </div>
             </div>
-            <div>
-                <img src="{% static "img/icons/icon30.png" %}" class="h-12 w-12" alt="">
-            </div>
-        </div>
+        </a>
 
         
-        <div class="bg-white h-32 w-full rounded-xl flex justify-around items-center shadow-lg">
-            <div>
-                <h1 class="text-xl text-gray-500 shadow-md">Past Events</h1>
-                <h1 class="text-2xl font-sans">5</h1>
+        <a href="{% url "user-dashboard" %}?date=past">
+            <div class="bg-white h-32 w-full rounded-xl flex justify-around items-center shadow-lg">
+                <div>
+                    <h1 class="text-xl text-gray-500 shadow-md">Past Events</h1>
+                    <h1 class="text-2xl font-sans">{{counts.past_events}}</h1>
+                </div>
+                <div>
+                    <img src="{% static "img/icons/icon38.png" %}" class="h-9 w-9" alt="">
+                </div>
             </div>
-            <div>
-                <img src="{% static "img/icons/icon38.png" %}" class="h-9 w-9" alt="">
-            </div>
-        </div>
+        </a>
 
 
     </div>
+
+    <div>
+        {% comment %} <form method='GET'> {% endcomment %}
+            {% for event in events %}
+                <div>{{event.name}} <span class="bg-rose-700 w-fit rounded-sm">{{event.date}}</span></div>
+            {% endfor %}
+        {% comment %} </form> {% endcomment %}
+    </div>
+
+    
 </div>
 {% endblock events-home-page %}

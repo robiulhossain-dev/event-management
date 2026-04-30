@@ -53,4 +53,5 @@ class EventModelForm(forms.ModelForm):
             }),
 
         }
+
     

@@ -10,15 +10,16 @@
 <div class="p-6 bg-gray-100">
   {% comment %} Grid-1 {% endcomment %}
   <div class="grid grid-cols-4 gap-4 mb-8">
+    {% for event in events %}
     <div class="grid col-start-2 col-span-3 bg-white shadow-xl rounded-xl hover:bg-gray-100 border  hover:border-orange-600">
       <div class="grid grid-cols-3 gap-2">
         <div class="grid col-span-1 p-4">
-          <img src="{% static "img/eid/eid2.jpg" %}" class="rounded-lg" alt="">
+          <img src="{% static "img/festival/eid2.jpg" %}" class="rounded-lg" alt="">
         </div>
         <div class="grid col-start-2 col-span-3 pt-5 pl-2">
-            <h1 class="font-extrabold font-serif text-2xl">Istanbul Eid Festival 2026</h1>
-            <p class="font-semibold">Event Type : <span class="font-bold text-fuchsia-800">Cultural</span></p>
-            <h1 class="font-serif p-0 text-teal-700">Lorem ipsum dollor site amet the best consectuer diam nerdistin adipiscing elites sed diam nonummy nibh the ebest uismod delgas tincidunt ut laoreet dolore magna...</h1>
+            <h1 class="font-extrabold font-serif text-2xl">{{event.name}}</h1>
+            <p class="font-semibold">Event Catagory : <span class="font-bold text-fuchsia-800">{{event.catagory.name}}</span></p>
+            <h1 class="font-serif p-0 text-teal-700">{{event.description|truncatechars:100}}</h1>
             <div class="grid grid-cols-3">
               <div class="grid col-start-1 col-span-2">
                 <div class="flex justify-around">
@@ -43,20 +44,25 @@
               </div>
 
               <div class="grid col-start-3 col-span-1">
-                <button class="bg-orange-600 hover:bg-orange-700 text-white px-2 py-1 m-8 font-bold  rounded-full">
+                <a href="{% url "event-details" %}?id={{event.id}}">
+                  <button class="bg-orange-600 hover:bg-orange-700 text-white px-2 py-1 m-8 font-bold  rounded-full">
+                    See Details
+                  </button>
+                </a>
+                {% comment %} <a href="{% url "event-details" %}" class="bg-orange-600 hover:bg-orange-700 text-white px-2 py-1 m-8 font-bold  rounded-full">
                   See Details
-                </button>
+                </a> {% endcomment %}
               </div>
             </div>
         </div>
       </div>
     </div>
-
+    {% endfor %}
   </div>
 
 
   {% comment %} Grid-2 {% endcomment %}
-  <div class="grid grid-cols-4 gap-4 mb-8">
+  {% comment %} <div class="grid grid-cols-4 gap-4 mb-8">
     <div class="grid col-span-1 px-12 ">
           <img src="{% static "img/event5.jpg" %}" class="rounded-lg" alt="">
     </div>
@@ -101,11 +107,11 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> {% endcomment %}
 
 
   {% comment %} Grid-3 {% endcomment %}
-  <div class="grid grid-cols-4 gap-4 mb-8">
+  {% comment %} <div class="grid grid-cols-4 gap-4 mb-8">
     <div class="grid col-start-2 col-span-3 bg-white border-solid shadow-xl rounded-xl hover:bg-gray-100 border hover:border-orange-600">
       <div class="grid grid-cols-3 gap-2">
         <div class="grid col-span-1 p-4">
@@ -147,11 +153,11 @@
       </div>
     </div>
 
-  </div>
+  </div> {% endcomment %}
 
   
   {% comment %} Grid-4 {% endcomment %}
-  <div class="grid grid-cols-4 gap-4 mb-8">
+  {% comment %} <div class="grid grid-cols-4 gap-4 mb-8">
     <div class="grid col-start-2 col-span-3 bg-white border-solid shadow-xl rounded-xl hover:bg-gray-100 border hover:border-orange-600">
       <div class="grid grid-cols-3 gap-2">
         <div class="grid col-span-1 p-4">
@@ -193,7 +199,7 @@
       </div>
     </div>
 
-  </div>
+  </div> {% endcomment %}
 </div>
 
 
