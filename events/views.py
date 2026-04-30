@@ -1,7 +1,7 @@
 from datetime import date
 from django.http import HttpResponse
 from events.forms import EventModelForm
-from events.models import Event
+from events.models import Event, Catagory
 from django.contrib import messages
 from django.db.models import Avg, Count, Sum, Q
 from django.shortcuts import render, redirect
@@ -14,10 +14,30 @@ def home(request):
     return render(request, "dashboard/homepage.html")
 
 def eventlist(request):
-    events = Event.objects.filter(date__gt=date.today()).order_by('date')[:5]
+    cats = Catagory.objects.all()
+
+    query = request.GET.get('q')
+    get_cat = request.GET.get('catagory')
+
+    events = Event.objects.filter(date__gt=date.today()).order_by('date')
+
+    if query:
+        events = events.filter(
+            Q(name__icontains=query) |
+            Q(location__icontains=query)
+        )
+
+    if get_cat:
+        events = events.filter(catagory_id=get_cat)
+
+    if not query and not get_cat:
+        events = events[:5]
+
     context = {
-        'events' : events
+        'events': events,
+        'cats': cats,
     }
+
     return render(request, "dashboard/eventlist.html", context)
     
 def event_details(request):

@@ -8,6 +8,32 @@
 </div> {% endcomment %}
 
 <div class="p-6 bg-gray-100">
+  <div class="p-5 mb-10">
+    <form method='GET'>
+      <div class="flex justify-center gap-4">
+        <div>
+          <h1 class="font-serif mb-2 text-xl text-black">Search Event</h1>
+          <input type="text" name="q" class="border border-gray-300 shadow-md rounded w-60 h-10 pl-2 placeholder:italic placeholder:text-gray-300" style="outline: none;" placeholder="search for events">
+        </div>
+        <div>
+          <h1 class="font-serif mb-2 text-xl text-black">Select Catagory</h1>
+          <select name="catagory" class="border w-60 h-10 rounded focus:outline-none shadow-md">
+            
+            <option value="">All Catagory</option>
+            {% for cat in cats %}
+              <option value="{{cat.id}}">{{ cat.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="pt-9 ">
+          <button type="submit" class="bg-teal-600 hover:bg-teal-700 w-20 h-10 rounded shadow-md inline-block text-white">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+
   {% comment %} Grid-1 {% endcomment %}
   <div class="grid grid-cols-4 gap-4 mb-8">
     {% for event in events %}

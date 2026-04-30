@@ -27,11 +27,25 @@
         {% comment %} options {% endcomment %}
         <div>
           <div class="flex justify-center pr-5 font-mono gap-4">
-            <h1 class="bg-rose-600 w-24 h-10 border rounded-md font-semibold text-lg flex items-center justify-center text-white font-mono hover:bg-rose-700 hover:text-gray-200">Home</h1>
-            <h1 class="bg-rose-600 w-24 h-10 border rounded-md font-semibold text-lg flex items-center justify-center text-white font-mono hover:bg-rose-700 hover:text-gray-200">About</h1>
-            <h1 class="bg-rose-600 w-24 h-10 border rounded-md font-semibold text-lg flex items-center justify-center text-white font-mono hover:bg-rose-700 hover:text-gray-200">Event</h1>
-            <h1 class="bg-rose-600 w-24 h-10 border rounded-md font-semibold text-lg flex items-center justify-center text-white font-mono hover:bg-rose-700 hover:text-gray-200">Dashboard</h1>
-            <h1 class="bg-rose-600 w-24 h-10 border rounded-md font-semibold text-lg flex items-center justify-center text-white font-mono hover:bg-rose-700 hover:text-gray-200">Contact</h1>         
+            <a href="{% url "home" %}">
+              <h1 class="bg-rose-600 w-24 h-10 border rounded-md font-semibold text-lg flex items-center justify-center text-white font-mono hover:bg-rose-700 hover:text-gray-200">Home</h1>
+            </a>
+
+            <a href="{% url "home" %}">
+              <h1 class="bg-rose-600 w-24 h-10 border rounded-md font-semibold text-lg flex items-center justify-center text-white font-mono hover:bg-rose-700 hover:text-gray-200">About</h1>
+            </a>
+
+            <a href="{% url "event-list" %}">
+              <h1 class="bg-rose-600 w-24 h-10 border rounded-md font-semibold text-lg flex items-center justify-center text-white font-mono hover:bg-rose-700 hover:text-gray-200">Events</h1>
+            </a>
+
+            <a href="{% url "user-dashboard" %}">
+              <h1 class="bg-rose-600 w-24 h-10 border rounded-md font-semibold text-lg flex items-center justify-center text-white font-mono hover:bg-rose-700 hover:text-gray-200">Dashboard</h1>
+            </a>
+
+            <a href="{% url "home" %}">
+              <h1 class="bg-rose-600 w-24 h-10 border rounded-md font-semibold text-lg flex items-center justify-center text-white font-mono hover:bg-rose-700 hover:text-gray-200">Contact</h1>
+            </a>
           </div>
         </div>
       </div>
@@ -129,7 +143,7 @@
             <h1 class="mb-2 text-gray-400 hover:text-amber-500">Sports</h1>
             <h1 class="mb-2 text-gray-400 hover:text-amber-500">Business</h1>
             <h1 class="mb-2 text-gray-400 hover:text-amber-500">Music</h1>
-            <h1 class="mb-2 text-gray-400 hover:text-amber-500">Cultural</h1>
+            <h1 class="mb-2 text-gray-400 hover:text-amber-500">Tech</h1>
             <h1 class="mb-2 text-gray-400 hover:text-amber-500">Festival</h1>
           </div>
 

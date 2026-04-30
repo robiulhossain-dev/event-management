@@ -59,11 +59,9 @@
     </div>
 
     <div>
-        {% comment %} <form method='GET'> {% endcomment %}
             {% for event in events %}
                 <div>{{event.name}} <span class="bg-rose-700 w-fit rounded-sm">{{event.date}}</span></div>
             {% endfor %}
-        {% comment %} </form> {% endcomment %}
     </div>
 
     
