@@ -2,3 +2,8 @@
     width: 500px;
 }
 
+.card-img{
+    width: 300px;
+    /* object-fit : cover; */
+    border-radius:3px;
+}

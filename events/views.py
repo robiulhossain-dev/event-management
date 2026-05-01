@@ -108,3 +108,30 @@ def create_event(request):
     }
     return render(request, "dashboard/create_event.html", context)
 
+
+def update_event(request, id):
+
+    event = Event.objects.get(id=id)
+    print(event.name)
+    form = EventModelForm(instance=event)
+
+    if request.method == 'POST':
+        form = EventModelForm(request.POST, instance=event)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Event Edited Successfully")
+            return redirect('user-dashboard')
+
+    context = {
+        'form' : form,
+    }
+
+    return render(request, "dashboard/create_event.html", context)
+
+
+def delete_event(request, id):
+    if request.method == 'POST':
+        event = Event.objects.get(id=id)
+        event.delete()
+        messages.success(request,"Event Deleted Successfully")
+        return redirect('user-dashboard')

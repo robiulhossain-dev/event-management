@@ -2,8 +2,18 @@
 {% load static %}
 {% block events-home-page %}
 
-<div class="bg-gray-100">
-    <div class="grid grid-cols-4 gap-4 px-8 py-20">
+<div class="bg-gray-100 pb-5">
+    <div class="pl-8 pt-16">
+        {% if messages %}
+          {% for message in messages %}
+            <div class=" bg-orange-600 p-2 w-fit h-fit rounded-sm {% if message.tags == 'success' %}{% endif %}">
+              {{message}}
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+
+    <div class="grid grid-cols-4 gap-4 px-8 py-16">
         <a href="{% url "user-dashboard" %}">
             <div class="bg-white h-32 w-full rounded-xl flex justify-around items-center shadow-lg">
                 <div>
@@ -16,7 +26,7 @@
             </div>
         </a>
 
-        
+
         <a href="{% url "user-dashboard" %}?date=today">
             <div class="bg-white h-32 w-full rounded-xl flex justify-around items-center shadow-lg">
             <div>
@@ -29,7 +39,7 @@
         </div>
         </a>
 
-        
+
         <a href="{% url "user-dashboard" %}?date=future">
             <div class="bg-white h-32 w-full rounded-xl flex justify-around items-center shadow-lg">
                 <div>
@@ -42,7 +52,7 @@
             </div>
         </a>
 
-        
+
         <a href="{% url "user-dashboard" %}?date=past">
             <div class="bg-white h-32 w-full rounded-xl flex justify-around items-center shadow-lg">
                 <div>
@@ -58,12 +68,36 @@
 
     </div>
 
-    <div>
+    <div class=" bg-white m-5 rounded-lg border-none shadow-md">
+        {% comment %} <form method='GET'> {% endcomment %}
+            <div class="border grid grid-cols-4 gap-2 p-3">
+                <h1 class="font-sans font-semibold text-xl text-pink-700 pb-4">Event</h1>
+                <h1 class="font-sans font-semibold text-xl text-pink-700 pb-4">Catagory</h1>
+                <h1 class="font-sans font-semibold text-xl text-pink-700 pb-4">Date</h1>
+                <h1 class="font-sans font-semibold text-xl text-pink-700 pb-4">Location</h1>
+            </div>
             {% for event in events %}
-                <div>{{event.name}} <span class="bg-rose-700 w-fit rounded-sm">{{event.date}}</span></div>
+                
+                <div class="border border-t-red-300 grid grid-cols-4 gap-2 p-3">
+                    <a href="{% url "event-details" %}?id={{event.id}}">
+                        <h1 class="hover:text-amber-600 font-sans font-semibold">{{event.name}}</h1>
+                    </a>
+                    <h1>{{event.catagory}}</h1>   
+                    <h1>{{event.date}}</h1>
+                    <div class="flex gap-4"> 
+                        <a href="{% url "update-event" event.id %}" class="w-16 h-8 bg-red-800 rounded-sm text-center pt-1 text-white">Edit</a> 
+                        <form action="{% url "delete-event" event.id %}" method= 'POST' class="w-16 h-8 bg-teal-700 rounded-sm text-center pt-1 text-white">
+                            {% csrf_token %}
+                            <button type="submit">Delete</button>
+                        </form>
+                    </div>
+                    {% comment %} <h1>{{event.location}}</h1> {% endcomment %}
+                </div>
+                
             {% endfor %}
+        {% comment %} </form> {% endcomment %}
     </div>
 
-    
+
 </div>
 {% endblock events-home-page %}
