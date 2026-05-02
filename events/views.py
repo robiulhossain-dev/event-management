@@ -17,18 +17,18 @@ def eventlist(request):
     cats = Catagory.objects.all()
 
     query = request.GET.get('q')
-    get_cat = request.GET.get('catagory')
+    get_cat = request.GET.get('catagory') 
 
-    events = Event.objects.filter(date__gt=date.today()).order_by('date')
+    events = Event.objects.select_related('catagory').filter(date__gt=date.today()).order_by('date')
 
     if query:
-        events = events.filter(
+        events = events.select_related('catagory').filter(
             Q(name__icontains=query) |
             Q(location__icontains=query)
         )
 
     if get_cat:
-        events = events.filter(catagory_id=get_cat)
+        events = events.select_related('catagory').filter(catagory_id=get_cat)
 
     if not query and not get_cat:
         events = events[:5]
@@ -55,13 +55,13 @@ def user_dashboard(request):
     date_filter = request.GET.get('date')
 
     if date_filter == 'today':
-        events = Event.objects.filter(date = date.today())
+        events = Event.objects.select_related('catagory').filter(date = date.today())
     elif date_filter == 'future':
-        events = Event.objects.filter(date__gt = date.today())
+        events = Event.objects.select_related('catagory').filter(date__gt = date.today())
     elif date_filter == 'past':
-        events = Event.objects.filter(date__lt = date.today())
+        events = Event.objects.select_related('catagory').filter(date__lt = date.today())
     else:
-        events = Event.objects.all()
+        events = Event.objects.select_related('catagory').all()
 
     
     counts = Event.objects.aggregate(

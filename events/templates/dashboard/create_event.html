@@ -1,14 +1,9 @@
+{% extends "dashboard/frontpage.html" %}
 {% load static %}
-<!doctype html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static "css/style.css" %}">
-    <link rel="stylesheet" href="{% static "css/output.css" %}">
-    <title>Create-Event</title>
-  </head>
-  <body class="w-1/2 mx-auto mt-8">  
+<title>{% block title %}Create-Event{% endblock title %}</title>
+{% block events-home-page %}
+
+  <div class="w-1/2 mx-auto mt-8">  
     <div>
         {% if messages %}
           {% for message in messages %}
@@ -27,5 +22,5 @@
         {{form.as_p}}
         <button type="submit" class="bg-orange-600 rounded-md px-3 py-1 hover:bg-orange-700">Submit</button>
     </form>
-  </body>
-</html>
+  </div>
+{% endblock events-home-page %}
